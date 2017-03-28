@@ -1,0 +1,15 @@
+---
+# handlers file for kubernetes node
+
+- name: restart kubelet
+  service: name=kubelet state=restarted
+
+- name: restart kube-proxy
+  service: name=kube-proxy state=restarted
+
+- name: restart kubernetes node
+  service: name={{ item }} state=restarted
+  with_items:
+    - kubelet
+    - kube-proxy
+

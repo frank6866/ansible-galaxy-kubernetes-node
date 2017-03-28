@@ -1,0 +1,26 @@
+---
+
+- name: install kubernetes node
+  yum: name={{ item }} state=present
+  with_items:
+    - kubernetes-node
+    - flannel
+    - docker
+
+- name: template /etc/kubernetes/kubelet
+  template: src=etc/kubernetes/kubelet.j2 dest=/etc/kubernetes/kubelet mode=644 backup=yes
+  notify: restart kubelet
+
+- name: template /etc/kubernetes/proxy
+  template: src=etc/kubernetes/proxy.j2 dest=/etc/kubernetes/proxy mode=644 backup=yes
+  notify: restart kube-proxy
+
+- name: template /etc/kubernetes/config
+  template: src=etc/kubernetes/config.j2 dest=/etc/kubernetes/config mode=644 backup=yes
+  notify: restart kubernetes node
+
+- name: start and enable kubernetes node releated services
+  service: name={{ item }} state=restarted
+  with_items:
+    - kubelet
+    - kube-proxy

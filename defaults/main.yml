@@ -1,0 +1,6 @@
+---
+# defaults file for kubernetes node
+
+# kube_master_ip: 192.168.168.201
+kube_master_api_port: 8080
+
