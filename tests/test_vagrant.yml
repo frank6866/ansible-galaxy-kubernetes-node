@@ -1,5 +1,0 @@
----
-- hosts: mariadb_galera
-  become: true
-  roles:
-    - ../..

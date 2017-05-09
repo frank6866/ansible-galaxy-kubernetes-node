@@ -19,4 +19,4 @@ KUBE_LOG_LEVEL="--v=0"
 KUBE_ALLOW_PRIV="--allow-privileged=false"
 
 # How the controller-manager, scheduler, and proxy find the apiserver
-KUBE_MASTER="--master=http://{{ kube_master_ip }}:{{ kube_master_api_port }}"
+KUBE_MASTER="--master={{ kube_node_master_protocol }}://{{ kube_node_master_ip }}:{{ kube_node_master_api_port }}"

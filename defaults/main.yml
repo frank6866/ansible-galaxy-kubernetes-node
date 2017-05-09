@@ -1,6 +1,7 @@
 ---
 # defaults file for kubernetes node
 
-# kube_master_ip: 192.168.168.201
-kube_master_api_port: 8080
+kube_node_master_protocol: http
+kube_node_master_api_port: 8080
 
+pod_infra_container_image: registry.access.redhat.com/rhel7/pod-infrastructure:latest
